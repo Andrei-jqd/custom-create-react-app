@@ -95,6 +95,14 @@ const hasJsxRuntime = (() => {
   }
 })();
 
+const buildType = process.env.REACT_APP_BUILD_TYPE || 'web';
+const isElectronBuild = buildType === 'electron';
+
+const blockStripOptions = {
+  start: isElectronBuild ? '@removeIf-electron:start' : '@removeIf-web:start',
+  end: isElectronBuild ? '@removeIf-electron:end' : '@removeIf-web:end',
+};
+
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
 module.exports = function (webpackEnv) {
@@ -355,6 +363,17 @@ module.exports = function (webpackEnv) {
           exclude: /@babel(?:\/|\\{1,2})runtime/,
           test: /\.(js|mjs|jsx|ts|tsx|css)$/,
           loader: require.resolve('source-map-loader'),
+        },
+        {
+          test: /\.(js|mjs|jsx|ts|tsx)$/,
+          enforce: 'pre',
+          exclude: /(node_modules|bower_components|\.spec\.js)/,
+          use: [
+            {
+              loader: require.resolve('webpack-strip-block'),
+              options: blockStripOptions,
+            },
+          ],
         },
         {
           // "oneOf" will traverse all following loaders until one will
