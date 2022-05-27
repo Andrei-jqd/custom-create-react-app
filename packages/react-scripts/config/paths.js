@@ -30,8 +30,9 @@ const publicUrlOrPath = getPublicUrlOrPath(
 );
 
 const buildPath = process.env.BUILD_PATH || 'build';
+const buildType = process.env.REACT_APP_BUILD_TYPE || 'web';
 
-const moduleFileExtensions = [
+const webExtensions = [
   'web.mjs',
   'mjs',
   'web.js',
@@ -44,6 +45,31 @@ const moduleFileExtensions = [
   'web.jsx',
   'jsx',
 ];
+
+const electronExtensions = [
+  'electron.mjs',
+  'web.mjs',
+  'mjs',
+  'electron.js',
+  'web.js',
+  'js',
+  'electron.ts',
+  'web.ts',
+  'ts',
+  'electron.tsx',
+  'web.tsx',
+  'tsx',
+  'json',
+  'electron.jsx',
+  'web.jsx',
+  'jsx',
+];
+
+const _getModuleFileExtensions = buildType => {
+  return buildType === 'electron' ? electronExtensions : webExtensions;
+};
+
+const moduleFileExtensions = _getModuleFileExtensions(buildType);
 
 // Resolve file paths in the same order as webpack
 const resolveModule = (resolveFn, filePath) => {
