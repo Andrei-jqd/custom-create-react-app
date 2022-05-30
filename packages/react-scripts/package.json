@@ -1,7 +1,10 @@
 {
-  "name": "@dsq/react-scripts",
-  "version": "5.0.2",
-  "description": "Custom configuration and scripts for Create React App.",
+  "name": "@desquared/custom-react-scripts",
+  "version": "0.1.0",
+  "description": "Custom configuration and scripts for React Applications.",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/Andrei-jqd/dsq-create-react-app.git",
