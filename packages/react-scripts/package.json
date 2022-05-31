@@ -7,7 +7,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Andrei-jqd/dsq-create-react-app.git",
+    "url": "https://github.com/Desquared/custom-create-react-app.git",
     "directory": "packages/react-scripts"
   },
   "license": "MIT",
@@ -15,7 +15,7 @@
     "node": ">=14.0.0"
   },
   "bugs": {
-    "url": "https://github.com/Andrei-jqd/dsq-create-react-app/issues"
+    "url": "https://github.com/Desquared/custom-create-react-app/issues"
   },
   "files": [
     "bin",
