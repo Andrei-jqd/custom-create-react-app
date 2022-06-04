@@ -30,7 +30,7 @@ const publicUrlOrPath = getPublicUrlOrPath(
 );
 
 const buildPath = process.env.BUILD_PATH || 'build';
-const buildType = process.env.REACT_APP_BUILD_TYPE || 'web';
+const buildPlatform = process.env.REACT_APP_PLATFORM || 'web';
 
 const webExtensions = [
   'web.mjs',
@@ -65,11 +65,11 @@ const electronExtensions = [
   'jsx',
 ];
 
-const _getModuleFileExtensions = buildType => {
-  return buildType === 'electron' ? electronExtensions : webExtensions;
+const _getModuleFileExtensions = buildPlatform => {
+  return buildPlatform === 'electron' ? electronExtensions : webExtensions;
 };
 
-const moduleFileExtensions = _getModuleFileExtensions(buildType);
+const moduleFileExtensions = _getModuleFileExtensions(buildPlatform);
 
 // Resolve file paths in the same order as webpack
 const resolveModule = (resolveFn, filePath) => {

@@ -95,8 +95,8 @@ const hasJsxRuntime = (() => {
   }
 })();
 
-const buildType = process.env.REACT_APP_BUILD_TYPE || 'web';
-const isElectronBuild = buildType === 'electron';
+const buildPlatform = process.env.REACT_APP_PLATFORM || 'web';
+const isElectronBuild = buildPlatform === 'electron';
 
 const blockStripOptions = {
   start: isElectronBuild ? '@removeIf-electron:start' : '@removeIf-web:start',
