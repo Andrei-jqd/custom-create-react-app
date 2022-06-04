@@ -19,8 +19,7 @@ module.exports = {
 
   parser: '@babel/eslint-parser',
 
-  // Removed because of conflict
-  // plugin: ['react'],
+  plugin: ['react'],
 
   env: {
     browser: true,
