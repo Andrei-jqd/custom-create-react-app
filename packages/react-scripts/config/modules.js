@@ -14,6 +14,9 @@ const paths = require('./paths');
 const chalk = require('react-dev-utils/chalk');
 const resolve = require('resolve');
 
+const appDirectory = fs.realpathSync(process.cwd());
+const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
+
 /**
  * Get additional module paths based on the baseUrl of a compilerOptions object.
  *
@@ -58,6 +61,23 @@ function getAdditionalModulePaths(options = {}) {
 }
 
 /**
+ * Get custom aliases based on the paths of a compilerOptions object.
+ *
+ * @param {*} customPaths
+ */
+function getCustomAliases(customPaths = {}) {
+  const customAliases = {};
+  for (const key in customPaths) {
+    const aliasMatcher = /^@/.test(key) ? /^@/ : '';
+    const aliasKey = key.slice(0, key.length - 2);
+    const aliasPath = key.replace(aliasMatcher, 'src/');
+    const aliasValue = aliasPath.slice(0, aliasPath.length - 1);
+    customAliases[aliasKey] = resolveApp(aliasValue);
+  }
+  return customAliases;
+}
+
+/**
  * Get webpack aliases based on the baseUrl of a compilerOptions object.
  *
  * @param {*} options
@@ -72,8 +92,11 @@ function getWebpackAliases(options = {}) {
   const baseUrlResolved = path.resolve(paths.appPath, baseUrl);
 
   if (path.relative(paths.appPath, baseUrlResolved) === '') {
+    const customPaths = options.paths;
+    const customAliases = getCustomAliases(customPaths);
     return {
       src: paths.appSrc,
+      ...customAliases,
     };
   }
 }
