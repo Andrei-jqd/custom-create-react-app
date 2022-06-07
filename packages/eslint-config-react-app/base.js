@@ -19,7 +19,7 @@ module.exports = {
 
   parser: '@babel/eslint-parser',
 
-  plugin: ['react'],
+  plugin: ['react', 'react-native'],
 
   env: {
     browser: true,
