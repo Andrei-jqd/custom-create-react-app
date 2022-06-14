@@ -1,6 +1,6 @@
 {
   "name": "@desquared/custom-react-scripts",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Custom configuration and scripts for React Applications.",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
