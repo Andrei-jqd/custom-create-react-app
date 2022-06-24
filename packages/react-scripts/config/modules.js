@@ -67,11 +67,16 @@ function getAdditionalModulePaths(options = {}) {
  */
 function getCustomAliases(customPaths = {}) {
   const customAliases = {};
+  const prefixRegex = /^@/;
+  const suffixRegex = /\/\*$/;
+
   for (const key in customPaths) {
-    const aliasMatcher = /^@/.test(key) ? /^@/ : '';
-    const aliasKey = key.slice(0, key.length - 2);
+    const aliasMatcher = prefixRegex.test(key) ? prefixRegex : '';
+    const aliasKey = suffixRegex.test(key) ? key.slice(0, key.length - 2) : key;
     const aliasPath = key.replace(aliasMatcher, 'src/');
-    const aliasValue = aliasPath.slice(0, aliasPath.length - 1);
+    const aliasValue = suffixRegex.test(aliasPath)
+      ? aliasPath.slice(0, aliasPath.length - 1)
+      : aliasPath;
     customAliases[aliasKey] = resolveApp(aliasValue);
   }
   return customAliases;
@@ -153,6 +158,7 @@ function getModules() {
   const options = config.compilerOptions || {};
 
   const additionalModulePaths = getAdditionalModulePaths(options);
+  setTimeout(() => console.log(getWebpackAliases(options)), 15000);
 
   return {
     additionalModulePaths: additionalModulePaths,
