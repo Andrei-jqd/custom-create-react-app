@@ -158,7 +158,6 @@ function getModules() {
   const options = config.compilerOptions || {};
 
   const additionalModulePaths = getAdditionalModulePaths(options);
-  setTimeout(() => console.log(getWebpackAliases(options)), 15000);
 
   return {
     additionalModulePaths: additionalModulePaths,
