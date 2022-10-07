@@ -440,6 +440,7 @@ module.exports = function (webpackEnv) {
                 path.resolve('node_modules/react-native-ratings'),
                 path.resolve('node_modules/react-native-vector-icons'),
                 path.resolve('node_modules/@rneui/themed'),
+                path.resolve('node_modules/react-native-webview'),
               ],
               loader: require.resolve('babel-loader'),
               options: {
