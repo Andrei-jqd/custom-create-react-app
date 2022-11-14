@@ -440,7 +440,8 @@ module.exports = function (webpackEnv) {
                 path.resolve('node_modules/react-native-ratings'),
                 path.resolve('node_modules/react-native-vector-icons'),
                 path.resolve('node_modules/@rneui/themed'),
-                path.resolve('node_modules/react-native-webview'),
+                path.resolve('node_modules/react-native-reanimated'),
+                path.resolve('node_modules/react-native-toast-message'),
               ],
               loader: require.resolve('babel-loader'),
               options: {
@@ -630,6 +631,12 @@ module.exports = function (webpackEnv) {
       ].filter(Boolean),
     },
     plugins: [
+      // `process.env.NODE_ENV === 'production'` must be `true` for production
+      // builds to eliminate development checks and reduce build size. You may
+      // wish to include additional optimizations.
+      new webpack.DefinePlugin({
+        __DEV__: process.env.NODE_ENV === 'development',
+      }),
       // Generates an `index.html` file with the <script> injected.
       new HtmlWebpackPlugin(
         Object.assign(
