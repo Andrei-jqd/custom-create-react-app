@@ -436,12 +436,7 @@ module.exports = function (webpackEnv) {
               test: /\.(js|mjs|jsx|ts|tsx)$/,
               include: [
                 paths.appSrc,
-                path.resolve('node_modules/@rneui/base'),
-                path.resolve('node_modules/react-native-ratings'),
-                path.resolve('node_modules/react-native-vector-icons'),
-                path.resolve('node_modules/@rneui/themed'),
                 path.resolve('node_modules/react-native-reanimated'),
-                path.resolve('node_modules/react-native-toast-message'),
               ],
               loader: require.resolve('babel-loader'),
               options: {
