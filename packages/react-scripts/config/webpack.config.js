@@ -437,6 +437,7 @@ module.exports = function (webpackEnv) {
               include: [
                 paths.appSrc,
                 path.resolve('node_modules/react-native-reanimated'),
+                path.resolve('node_modules/@desquared/box-design-system'),
               ],
               loader: require.resolve('babel-loader'),
               options: {
